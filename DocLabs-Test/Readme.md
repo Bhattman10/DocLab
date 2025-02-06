@@ -18,3 +18,8 @@ pip install Flask
 flask --app test run
 ```
 Currently, test is the name of the python file running flask. Change this argument if necessary.
+### How do you trigger a request to the server?
+Use Node.js to run the JavaScript file, which sends a JSON file to the Flask server. It then waits for the server to respond with its own JSON containing the execution result.
+```
+node test.js
+```
