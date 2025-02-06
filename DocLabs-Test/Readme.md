@@ -1,4 +1,5 @@
-DocLabs-Test demonstrates elementary backend functionaility using a tester frontend written in JS.
+### What is DocLabs-Test?
+Here you can experiment with backend functionaility. Test.js emulates how Google App Scripts will interact with the Flask API.
 ### Setting up the envrionment
 1. In the DocLabs-Test directory, create the virtual environment:
 ```
