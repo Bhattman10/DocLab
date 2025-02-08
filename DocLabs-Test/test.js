@@ -27,15 +27,18 @@ async function send() {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
+    files = [
+        ["main.py", 'import my_functions\nname = "Ethan"\ngreeting = my_functions.greet(name)\nprint(greeting)\nx = 5\ny = 3\nsum_result = my_functions.add(x, y)\nprint(f"The sum of {x} and {y} is {sum_result}")'],
+        ["my_functions.py", 'def greet(name):\n\treturn f\"Hello, {name}!\"\n\ndef add(a, b):\n\treturn a + b']
+    ]
+
     const response = await fetch("http://127.0.0.1:5000/", {
         method: "POST",
         // Change the contents of the JSON to experiment!
         body: JSON.stringify(
             {
                 session_id: '12345',
-                language: 'Python',
-                file_name: 'hello.py',
-                code: 'print("Hello World!")'
+                files: files
             }
         ),
         headers: myHeaders,
