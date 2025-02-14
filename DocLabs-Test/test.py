@@ -14,7 +14,7 @@ def extract_file_type(string):
     return string[index_of_dot:]
 
 def executePython(file_name):
-    result = subprocess.run(["python3", file_name], capture_output=True, text=True)
+    result = subprocess.run(["python", file_name], capture_output=True, text=True)
     stdout_output = result.stdout
     return stdout_output
 
@@ -56,6 +56,7 @@ def json():
     # Execute the main file
     if file_type == ".py":
         result = executePython(file_to_execute)
+        print(result)
     else:
         result = "Invalid language parameter."
     
