@@ -1,6 +1,6 @@
-### What is DocLabs-Test?
+### What is Experimentation for?
 
-Here you can experiment with backend functionaility. Test.js emulates how Google App Scripts will interact with the Flask API.
+Here you can experiment with fullstack functionaility. Test.js emulates how Google App Scripts will interact with the Flask API.
 
 ### Setting up the envrionment
 
@@ -27,7 +27,7 @@ pip install Flask
 3. To run the application, enter the following:
 
 ```
-flask --app test run
+flask --app backend run
 ```
 
 Currently, test is the name of the python file running flask. Change this argument if necessary.
@@ -37,5 +37,6 @@ Currently, test is the name of the python file running flask. Change this argume
 Use Node.js to run the JavaScript file, which sends a JSON file to the Flask server. It then waits for the server to respond with its own JSON containing the execution result.
 
 ```
-node test.js
+flask --app backend run
+node frontend.js
 ```

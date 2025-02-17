@@ -74,3 +74,6 @@ def json():
     # Return the result as a JSON
     data = {'result' : result}
     return jsonify(data)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)

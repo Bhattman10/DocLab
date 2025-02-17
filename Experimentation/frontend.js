@@ -32,7 +32,7 @@ async function send() {
         ["my_functions.py", 'def greet(name):\n\treturn f\"Hello, {name}!\"\n\ndef add(a, b):\n\treturn a + b']
     ]
 
-    const response = await fetch("http://127.0.0.1:5000/", {
+    const response = await fetch("http://127.0.0.1:5000", {
         method: "POST",
         // Change the contents of the JSON to experiment!
         body: JSON.stringify(
