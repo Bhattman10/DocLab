@@ -5,17 +5,20 @@ Google Docs extension that provides Real-time Collaborative Programming (RCP) in
 ## How to Run & Test the Backend
 
 1. Verify that Docker is downloaded to your system and that you are logged in.
-2. Navigate to "Backend" and run the following:
+2. Run the following to start/refresh the backend & testing suite:
 
 ```
-docker network create my_network
-docker build -t backend .
-docker run -d --name flask --network my_network -p 5000:5000 backend
+docker compose up -d --build
 ```
 
-3. Navigate to "Tests" and run the following:
+3. Run the following to view the pytest results:
 
 ```
-docker build -t tests .
-docker run --rm --name frontend --network my_network tests
+docker compose logs tests
+```
+
+4. To shut down the service, run the following:
+
+```
+docker compose down
 ```

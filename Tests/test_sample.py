@@ -1,9 +1,9 @@
 import requests
 import json
 
-def frontend(data):
+def client(data):
 
-    url = "http://flask:5000/"
+    url = "http://backend:5000/"
 
     try:
         response = requests.post(url, data=json.dumps(data), headers={'Content-Type': 'application/json'})
@@ -20,4 +20,12 @@ def test_hello():
         "session_id": "12345",
         "files" : files
     }
-    assert frontend(data) == '{"result":"Hello World!\\n"}\n'
+    assert client(data) == '{"result":"Hello World!\\n"}\n'
+
+def test_addition():
+    files = [["main.py", "print(1+2)"]]
+    data = {
+        "session_id": "12345",
+        "files" : files
+    }
+    assert client(data) == '{"result":"3\\n"}\n'
