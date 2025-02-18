@@ -9,7 +9,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the Python script
-COPY frontend.py .
+COPY test_sample.py .
 
 # Run the Python script
-CMD ["python", "frontend.py"]
+CMD ["pytest"]
