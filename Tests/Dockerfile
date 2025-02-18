@@ -1,17 +1,11 @@
-# Use the official Python base image
-FROM python:3.11-slim
-
-# copy the requirements file into the image
-COPY ./requirements.txt /app/requirements.txt
+# Use the official Node.js image from Docker Hub
+FROM node:18-alpine
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /usr/src/app
 
-# Install dependencies
-RUN pip install -r requirements.txt
+# Copy the JavaScript file to the container
+COPY frontend.js .
 
-# copy every content from the local file to the image
-COPY . /app
-
-# Run the test application
-CMD ["pytest"]
+# Run the JavaScript file using Node.js
+CMD ["node", "frontend.js"]

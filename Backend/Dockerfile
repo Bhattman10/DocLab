@@ -1,19 +1,17 @@
-# Use the official Python base image
-FROM python:3.11-slim
-
-# copy the requirements file into the image
-COPY ./requirements.txt /app/requirements.txt
+# Use the official Python image
+FROM python:3.10-slim
 
 # Set the working directory
 WORKDIR /app
 
-# Install dependencies
-RUN pip install -r requirements.txt
-
-# copy every content from the local file to the image
+# Copy the current directory contents into the container
 COPY . /app
 
+# Install any necessary dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose the port the app runs on
 EXPOSE 5000
 
-# Run the Flask application
-CMD ["flask", "--app", "main", "run", "--debug"]
+# Run the application
+CMD ["python", "main.py"]
