@@ -1,11 +1,15 @@
-# Use the official Node.js image from Docker Hub
-FROM node:18-alpine
+# Use the official Python image
+FROM python:3.9-slim
 
 # Set the working directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Copy the JavaScript file to the container
-COPY frontend.js .
+# Copy the requirements file and install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Run the JavaScript file using Node.js
-CMD ["node", "frontend.js"]
+# Copy the Python script
+COPY frontend.py .
+
+# Run the Python script
+CMD ["python", "frontend.py"]

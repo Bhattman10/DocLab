@@ -8,13 +8,14 @@ Google Docs extension that provides Real-time Collaborative Programming (RCP) in
 2. Navigate to "Backend" and run the following:
 
 ```
+docker network create my_network
 docker build -t backend .
-docker run -dp 5000:5000 backend
+docker run -d --name flask --network my_network -p 5000:5000 backend
 ```
 
 3. Navigate to "Tests" and run the following:
 
 ```
 docker build -t tests .
-docker run tests
+docker run --rm --name frontend --network my_network tests
 ```
