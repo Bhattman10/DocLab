@@ -7,7 +7,8 @@ Google Docs extension that provides Real-time Collaborative Programming (RCP) in
 ### Step 1: Set up Docker.
 
 1. Download Docker Desktop & create an account.
-2. Navigate to the project directory and open a terminal. Enter the following:
+2. Make sure Docker Desktop is open. This ensures the daemon is online.
+3. Navigate to the project directory and open a terminal. Enter the following:
 ```
 docker login -u [username] -p [password]
 ```
@@ -17,8 +18,15 @@ docker login -u [username] -p [password]
 To start the backend \(or make backend changes take effect\) enter the following:
 
 ```
+make backend
+```
+
+Alternatively, you can enter the full docker command:
+
+```
 docker compose up -d --no-deps --build backend
 ```
+
 
 You can view the backend logs on Docker Desktop, or run the following command:
 
@@ -29,6 +37,12 @@ docker compose logs backend
 ### Step 3: Compile & run the testing suite.
 
 To run the testing suite & see results \(plus make changes to testing suite take effect\) enter the following:
+
+```
+make tests
+```
+
+Alternatively, you can enter the full docker command:
 
 ```
 docker compose up --no-deps --build tests
