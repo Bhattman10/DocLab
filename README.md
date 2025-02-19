@@ -2,23 +2,39 @@
 
 Google Docs extension that provides Real-time Collaborative Programming (RCP) in one or multiple languages. The collaborative editing environment will be leveraged to create a quick, portable, shared software development environment for quick code demos/sketches.
 
-## How to Run & Test the Backend
+## How to Run & Test DocLabs
 
-1. Verify that Docker is downloaded to your system and that you are logged in.
-2. Run the following to start/refresh the backend & testing suite:
+### Step 1: Set up Docker.
 
+1. Download Docker Desktop & create an account.
+2. Navigate to the project directory and open a terminal. Enter the following:
 ```
-docker compose up -d --build
-```
-
-3. Run the following to view the pytest results:
-
-```
-docker compose logs tests
+docker login -u [username] -p [password]
 ```
 
-4. To shut down the service, run the following:
+### Step 2: Compile & run the backend.
+
+To start the backend \(or make backend changes take effect\) enter the following:
 
 ```
-docker compose down
+docker compose up -d --no-deps --build backend
+```
+
+You can view the backend logs on Docker Desktop, or run the following command:
+
+```
+docker compose logs backend
+```
+
+### Step 3: Compile & run the testing suite.
+
+To run the testing suite & see results \(plus make changes to testing suite take effect\) enter the following:
+
+```
+docker compose up --no-deps --build tests
+```
+
+### Step 4: Gracefully shut down the running containers.
+```
+docker compose stop
 ```
