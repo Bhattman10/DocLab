@@ -20,7 +20,7 @@ def executePython(file_name):
 
 @app.route('/')
 def hello():
-    return "DocLabs ONLINE"
+    return "DocLabs is running."
 
 @app.route('/', methods=['POST'])
 def json():
@@ -76,6 +76,3 @@ def json():
     # Return the result as a JSON
     data = {'result' : result}
     return jsonify(data)
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000) # or any other port you want to expose

@@ -2,9 +2,11 @@
 
 Google Docs extension that provides Real-time Collaborative Programming (RCP) in one or multiple languages. The collaborative editing environment will be leveraged to create a quick, portable, shared software development environment for quick code demos/sketches.
 
-## How to Run & Test DocLabs
+## Test & Developement Guide
 
-### Step 1: Set up Docker.
+The backend runs on containers to streamline the developement process. The following steps outline how to get started with testing and development of the project via Docker.
+
+### Step 1: Download & initialize Docker.
 
 1. Download Docker Desktop & create an account.
 2. Make sure Docker Desktop is open. This ensures the daemon is online.
@@ -13,42 +15,36 @@ Google Docs extension that provides Real-time Collaborative Programming (RCP) in
 docker login -u [username] -p [password]
 ```
 
-### Step 2: Compile & run the backend.
+### Step 2: Create the containers.
 
-To start the backend \(or make backend changes take effect\) enter the following:
-
-```
-make backend
-```
-
-Alternatively, you can enter the full docker command:
+Use the following command to compile & create the containers:
 
 ```
-docker compose up -d --no-deps --build backend
+docker compose up --build --no-start
 ```
 
+Docker compose mounts the containers w/ local source files so that changes are applied automatically.
 
-You can view the backend logs on Docker Desktop, or run the following command:
+### Step 3: Run the backend server.
 
-```
-docker compose logs backend
-```
-
-### Step 3: Compile & run the testing suite.
-
-To run the testing suite & see results \(plus make changes to testing suite take effect\) enter the following:
+Enter the following to run the server:
 
 ```
-make tests
+docker start -a backend
 ```
 
-Alternatively, you can enter the full docker command:
+### Step 4: Run the testing suite.
+
+In a new terminal, enter the following:
 
 ```
-docker compose up --no-deps --build tests
+docker start -a tests
 ```
 
-### Step 4: Gracefully shut down the running containers.
+### Step 5: Shut down the backend.
+
+Enter the following to gracefully shut down the containers:
+
 ```
-docker compose stop
+docker compose down
 ```

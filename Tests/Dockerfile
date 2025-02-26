@@ -8,9 +8,8 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the Python script
-COPY test_scenarios.py .
-COPY ./Scenarios /app/Scenarios
+# Copy the current directory contents into the container
+COPY . /app
 
-# Run the Python script
+# Run the Python tests
 CMD ["pytest"]

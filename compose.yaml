@@ -2,6 +2,9 @@ services:
   backend:
     image: backend
     build: ./Backend
+    container_name: backend
+    volumes:
+      - ./Backend:/app
     ports:
       - "5000:5000"
     networks:
@@ -9,6 +12,9 @@ services:
   tests:
     image: tests
     build: ./Tests
+    container_name: tests
+    volumes:
+      - ./Tests:/app
     networks:
       - DocLabsNetwork
 

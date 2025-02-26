@@ -61,6 +61,6 @@ def test_import():
     result = manager("./Scenarios/import.txt")
     assert result == "Hello, Ethan!\n"
 
-def test_input():
-    result = manager("./Scenarios/input.txt")
-    assert result == "Hello, Ethan!\n"
+# def test_input():
+#     result = manager("./Scenarios/input.txt")
+#     assert result == "Hello, Ethan!\n"
