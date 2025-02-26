@@ -9,7 +9,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the Python script
-COPY test_sample.py .
+COPY test_scenarios.py .
+COPY ./Scenarios /app/Scenarios
 
 # Run the Python script
 CMD ["pytest"]

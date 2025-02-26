@@ -29,9 +29,10 @@ def json():
     data = request.get_json()
 
     # Assign variables w/ JSON data
-    session_id = data.get('session_id')
-    files = data.get('files')
-    number_of_files = len(files)
+    session_id = data.get('document_id')
+    list_of_file_names = data.get('list_of_file_names')
+    list_of_code_contents = data.get('list_of_code_contents')
+    number_of_files = len(list_of_file_names)
 
     # Make directory cooresponding to session id
     os.makedirs(session_id, exist_ok=True) 
@@ -47,18 +48,19 @@ def json():
 
     # Create the files in the directory
     for i in range(number_of_files):
-        create_file(files[i][0], files[i][1])
+        create_file(list_of_file_names[i], list_of_code_contents[i])
     
-    # Store values of main file
-    file_to_execute = files[0][0]
+    # Store contents & attributes of main file
+    file_to_execute = list_of_file_names[0]
     file_type = extract_file_type(file_to_execute)
 
     # Execute the main file
     if file_type == ".py":
         result = executePython(file_to_execute)
-        print(result)
     else:
         result = "Invalid language parameter."
+    
+    print(result, flush=True)
     
     # Move back to parent dir and delete session
     os.chdir("..")
