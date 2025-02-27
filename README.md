@@ -2,9 +2,9 @@
 
 Google Docs extension that provides Real-time Collaborative Programming (RCP) in one or multiple languages. The collaborative editing environment will be leveraged to create a quick, portable, shared software development environment for quick code demos/sketches.
 
-## Test & Developement Guide
+## Getting Started
 
-The backend runs on containers to streamline the developement process. The following steps outline how to get started with testing and development of the project via Docker.
+The following steps outline how to set up the dev environment w/ VS Code & Docker.
 
 ### Step 1: Initialize Docker
 
