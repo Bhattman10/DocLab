@@ -5,22 +5,28 @@ import shutil
 
 app = Flask(__name__)
 
+
 def create_file(file_name, code):
     with open(file_name, "w") as f:
         f.write(code)
+
 
 def extract_file_type(string):
     index_of_dot = string.index('.')
     return string[index_of_dot:]
 
+
 def executePython(file_name):
-    result = subprocess.run(["python", file_name], capture_output=True, text=True)
+    result = subprocess.run(["python", file_name],
+                            capture_output=True, text=True)
     stdout_output = result.stdout
     return stdout_output
+
 
 @app.route('/')
 def hello():
     return "DocLabs is running."
+
 
 @app.route('/', methods=['POST'])
 def json():
@@ -35,7 +41,7 @@ def json():
     number_of_files = len(list_of_file_names)
 
     # Make directory cooresponding to session id
-    os.makedirs(session_id, exist_ok=True) 
+    os.makedirs(session_id, exist_ok=True)
 
     # Move to the directory
     try:
@@ -49,7 +55,7 @@ def json():
     # Create the files in the directory
     for i in range(number_of_files):
         create_file(list_of_file_names[i], list_of_code_contents[i])
-    
+
     # Store contents & attributes of main file
     file_to_execute = list_of_file_names[0]
     file_type = extract_file_type(file_to_execute)
@@ -59,20 +65,21 @@ def json():
         result = executePython(file_to_execute)
     else:
         result = "Invalid language parameter."
-    
+
     print(result, flush=True)
-    
+
     # Move back to parent dir and delete session
     os.chdir("..")
     path = "./" + session_id
     try:
         shutil.rmtree(path)
-        print(f"Directory '{path}' and its contents have been removed successfully.")
+        print(
+            f"Directory '{path}' and its contents have been removed successfully.")
     except FileNotFoundError:
         print(f"Error: Directory '{path}' not found.")
     except Exception as e:
         print(f"An error occurred: {e}")
-    
+
     # Return the result as a JSON
-    data = {'result' : result}
+    data = {'result': result}
     return jsonify(data)

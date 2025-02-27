@@ -2,36 +2,23 @@
 
 Google Docs extension that provides Real-time Collaborative Programming (RCP) in one or multiple languages. The collaborative editing environment will be leveraged to create a quick, portable, shared software development environment for quick code demos/sketches.
 
-## Test & Developement Guide
+## Getting Started
 
-The backend runs on containers to streamline the developement process. The following steps outline how to get started with testing and development of the project via Docker.
+The following steps outline how to set up the dev environment w/ VS Code & Docker.
 
-### Step 1: Download & initialize Docker.
+### Step 1: Initialize Docker
 
-1. Download Docker Desktop & create an account.
-2. Make sure Docker Desktop is open. This ensures the daemon is online.
-3. Navigate to the project directory and open a terminal. Enter the following:
-```
-docker login -u [username] -p [password]
-```
+Ensure Docker is downloaded and the daemon is online.
 
-### Step 2: Create the containers.
+### Step 2: Download Extensions
 
-Use the following command to compile & create the containers:
+Ensure you have the following VS Code extensions:
+1. Remote Connect
+2. Dev Containers
 
-```
-docker compose up --build --no-start
-```
+### Step 3: Run Container
 
-Docker compose mounts the containers w/ local source files so that changes are applied automatically.
-
-### Step 3: Run the backend server.
-
-Enter the following to run the server:
-
-```
-docker start -a backend
-```
+1. Click remote connect in the bottom left, then 
 
 ### Step 4: Run the testing suite.
 
