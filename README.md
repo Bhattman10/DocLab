@@ -31,3 +31,9 @@ Run the testing suite in DocLabs/Frontend:
 pytest
 ```
 ### Step 4: Debugging
+
+The launch.json is preset for debugging "Backend/main.py" & "Tests/test_scenarios.py" via debuggy.
+
+### Step 5: Exiting
+
+You can exit the dev environment simply by closing the remote connection. The environment image will automatically be saved to your docker dameon.
