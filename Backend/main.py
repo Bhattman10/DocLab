@@ -16,11 +16,14 @@ def extract_file_type(string):
     return string[index_of_dot:]
 
 
-def executePython(file_name):
+def executePython(file_name, list_of_user_inputs):
+    input_data = "\n".join(list_of_user_inputs)
     result = subprocess.run(["python", file_name],
-                            capture_output=True, text=True)
-    stdout_output = result.stdout
-    return stdout_output
+                            capture_output=True, text=True, input=input_data)
+    output = result.stdout
+    errors = result.stderr
+
+    return output, errors
 
 
 @app.route('/')
@@ -38,6 +41,8 @@ def json():
     session_id = data.get('document_id')
     list_of_file_names = data.get('list_of_file_names')
     list_of_code_contents = data.get('list_of_code_contents')
+    list_of_user_inputs = data.get('user_input')
+
     number_of_files = len(list_of_file_names)
 
     # Make directory cooresponding to session id
@@ -60,13 +65,13 @@ def json():
     file_to_execute = list_of_file_names[0]
     file_type = extract_file_type(file_to_execute)
 
-    # Execute the main file
+    # Determine the language and execute the main file
     if file_type == ".py":
-        result = executePython(file_to_execute)
+        standard_output, errors = executePython(
+            file_to_execute, list_of_user_inputs)
     else:
-        result = "Invalid language parameter."
-
-    print(result, flush=True)
+        standard_output = ""
+        errors = "Invalid language parameter."
 
     # Move back to parent dir and delete session
     os.chdir("..")
@@ -81,5 +86,8 @@ def json():
         print(f"An error occurred: {e}")
 
     # Return the result as a JSON
-    data = {'result': result}
+    data = {
+        'standard_output': standard_output,
+        'errors': errors
+    }
     return jsonify(data)

@@ -1,10 +1,8 @@
 ----------main.py----------
-first_name = input("What is your first name?)
-last_name = input("What is your last name?)
-print(f"Hello, {first_name} {last_name}!")
+name = input("What is your name?\n")
+print(f"Hello, {name}!")
 ---------------------------
 
 -----------input-----------
 Ethan
-Bhatt
 ---------------------------

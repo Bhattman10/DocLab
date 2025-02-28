@@ -74,7 +74,7 @@ def manager(file_path):
     }
     json_string = client(data)
     data = json.loads(json_string)
-    return data["result"]
+    return data["standard_output"]
 
 
 def test_hello():
@@ -94,4 +94,9 @@ def test_import():
 
 def test_input():
     result = manager("./Scenarios/input.txt")
-    assert result == "Hello, Ethan!\n"
+    assert result == "What is your name?\nHello, Ethan!\n"
+
+
+def test_multi_input():
+    result = manager("./Scenarios/multi_input.txt")
+    assert result == "What is your first name?\nWhat is your last name?\nHello, Ethan Bhatt!\n"
