@@ -2,53 +2,38 @@
 
 Google Docs extension that provides Real-time Collaborative Programming (RCP) in one or multiple languages. The collaborative editing environment will be leveraged to create a quick, portable, shared software development environment for quick code demos/sketches.
 
-## How to Run & Test DocLabs
+## Getting Started w/ Dev Environment
 
-### Step 1: Set up Docker.
+The following steps outline how to set up the dev environment w/ VS Code.
 
-1. Download Docker Desktop & create an account.
-2. Make sure Docker Desktop is open. This ensures the daemon is online.
-3. Navigate to the project directory and open a terminal. Enter the following:
+### Step 1: Download Docker & Extensions
+
+Download Docker & the following VS Code extensions:
+1. Remote Connect
+2. Dev Containers
+
+### Step 2: Start Developement Container
+
+1. Click remote connect in the bottom left, then "Clone Repository in Container Volume".
+2. Enter the respository "Bhattman10/DocLabs".
+3. Select the branch you want to develop.
+
+*The container uses an Ubuntu base image with Python. All requirements are automatically donaloded once the container is built. View & edit the deployment JSON in the folder "devcontainer".*
+
+### Step 3: Execute Services
+
+Run the Flask API in DocLabs/Backend:
 ```
-docker login -u [username] -p [password]
+flask --app main.py --debug run --host=0.0.0.0 --port=5000
 ```
-
-### Step 2: Compile & run the backend.
-
-To start the backend \(or make backend changes take effect\) enter the following:
-
+Run the testing suite in DocLabs/Frontend:
 ```
-make backend
+pytest
 ```
+### Step 4: Debugging
 
-Alternatively, you can enter the full docker command:
+The launch.json is preset for debugging "Backend/main.py" & "Tests/test_scenarios.py" via debuggy.
 
-```
-docker compose up -d --no-deps --build backend
-```
+### Step 5: Exiting
 
-
-You can view the backend logs on Docker Desktop, or run the following command:
-
-```
-docker compose logs backend
-```
-
-### Step 3: Compile & run the testing suite.
-
-To run the testing suite & see results \(plus make changes to testing suite take effect\) enter the following:
-
-```
-make tests
-```
-
-Alternatively, you can enter the full docker command:
-
-```
-docker compose up --no-deps --build tests
-```
-
-### Step 4: Gracefully shut down the running containers.
-```
-docker compose stop
-```
+You can exit the dev environment simply by closing the remote connection. The environment image will automatically be saved to your docker dameon.

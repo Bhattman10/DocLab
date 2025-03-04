@@ -1,3 +1,0 @@
-- change testing suite to read text files containing code
-- user input?
-- add functionaility for java, c++, etc.
