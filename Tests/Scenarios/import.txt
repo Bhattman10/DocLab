@@ -1,0 +1,20 @@
+----------main.py----------
+# main.py
+
+import helper
+
+def main():
+    name = "Ethan"
+    greeting = helper.greet(name)
+    print(greeting)
+
+if __name__ == "__main__":
+    main()
+---------------------------
+
+----------helper.py--------
+# helper.py
+
+def greet(name):
+    return f"Hello, {name}!"
+---------------------------

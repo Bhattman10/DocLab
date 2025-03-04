@@ -1,4 +1,0 @@
-- user input?
-- add functionaility for java, c++, etc.
-- implement Docker to eliminate incopatability
-- implement CI/CD via GitHub Actions for testing and deployement
