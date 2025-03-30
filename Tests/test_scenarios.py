@@ -1,5 +1,6 @@
 import requests
 import json
+import textwrap
 
 
 def parse_input(file, list_of_inputs):
@@ -74,29 +75,56 @@ def manager(file_path):
     }
     json_string = client(data)
     data = json.loads(json_string)
-    return data["standard_output"]
+    return data["standard_output"], data["errors"]
 
 
 def test_hello():
-    result = manager("./Scenarios/hello.txt")
-    assert result == "Hello World!\n"
+    standard_output, errors = manager("./Scenarios/hello.txt")
+    assert standard_output == "Hello World!\n"
+    assert errors == ""
 
 
 def test_math():
-    result = manager("./Scenarios/math.txt")
-    assert result == "3\n"
+    standard_output, errors = manager("./Scenarios/math.txt")
+    assert standard_output == "3\n"
+    assert errors == ""
 
 
 def test_import():
-    result = manager("./Scenarios/import.txt")
-    assert result == "Hello, Ethan!\n"
+    standard_output, errors = manager("./Scenarios/import.txt")
+    assert standard_output == textwrap.dedent("""\
+        Hello, Ethan!
+        """)
+    assert errors == ""
 
 
 def test_input():
-    result = manager("./Scenarios/input.txt")
-    assert result == "What is your name?\nHello, Ethan!\n"
+    standard_output, errors = manager("./Scenarios/input.txt")
+    assert standard_output == textwrap.dedent("""\
+        What is your name?
+        Hello, Ethan!
+        """)
+    assert errors == ""
 
 
 def test_multi_input():
-    result = manager("./Scenarios/multi_input.txt")
-    assert result == "What is your first name?\nWhat is your last name?\nHello, Ethan Bhatt!\n"
+    standard_output, errors = manager("./Scenarios/multi_input.txt")
+    assert standard_output == textwrap.dedent("""\
+        What is your first name?
+        What is your last name?
+        Hello, Ethan Bhatt!
+        """)
+    assert errors == ""
+
+
+def test_calculator():
+    standard_output, errors = manager("./Scenarios/calculator.txt")
+    assert standard_output == textwrap.dedent("""\
+        Select operation.
+        1.Add
+        2.Subtract
+        3.Multiply
+        4.Divide
+        Enter choice(1/2/3/4): Enter first number: Enter second number: 2.0 + 2.0 = 4.0
+        Let's do next calculation? (yes/no): """)
+    assert errors == ""

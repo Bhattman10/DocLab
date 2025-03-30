@@ -18,7 +18,7 @@ Download Docker & the following VS Code extensions:
 2. Enter the respository "Bhattman10/DocLabs".
 3. Select the branch you want to develop.
 
-*The container uses an Ubuntu base image with Python. All requirements are automatically donaloded once the container is built. View & edit the deployment JSON in the folder "devcontainer".*
+*The container uses an Ubuntu base image with Python. All project requirements are automatically downloaded once the container is built. View & edit the deployment JSON in the folder "devcontainer".*
 
 ### Step 3: Execute Services
 
