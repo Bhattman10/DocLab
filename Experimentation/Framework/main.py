@@ -8,7 +8,7 @@ import users
 
 
 python_library = (
-"""
+    """
 import math
 
 def distance(u: tuple[float, float], v: tuple[float, float]) -> float:
@@ -20,7 +20,7 @@ def distance(u: tuple[float, float], v: tuple[float, float]) -> float:
 )
 
 python_program = (
-"""
+    """
 import mathlib
 
 u = (1.0, 2.0)
@@ -32,7 +32,7 @@ print(f"The distance between {u} and {v} is {dist}.")
 )
 
 cpp_program = (
-"""
+    """
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -63,7 +63,7 @@ with users.create(username, "testpass", user_dir) as user:
         env.update_file("mathlib.py", python_library)
         env.update_file("hello.py", python_program)
         env.update_file("main.cpp", cpp_program)
-        
+
         build, output = env.execute("test.exe", "main.cpp", [])
         print(output.message)
         build, output = env.execute("test.py", "hello.py", ["mathlib.py"])
@@ -81,7 +81,7 @@ with users.create(username, "testpass", user_dir) as user:
 #             env.update_file("mathlib.py", python_library)
 #             env.update_file("hello.py", python_program)
 #             env.update_file("main.cpp", cpp_program)
-            
+
 #             build, output = env.execute("test.exe", "main.cpp", [])
 #             print(output.message)
 #             build, output = env.execute("test.py", "hello.py", ["mathlib.py"])
@@ -89,8 +89,6 @@ with users.create(username, "testpass", user_dir) as user:
 
 # print("Waiting...")
 # time.sleep(10)
-    
+
 # for username in usernames:
 #     users.destroy(username)
-
-
