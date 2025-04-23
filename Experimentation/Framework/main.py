@@ -4,7 +4,6 @@ import random
 import secrets
 import string
 import time
-import users
 
 
 python_library = (
@@ -55,19 +54,30 @@ __SOURCE_DIR = "source"
 __PASSWORD_LEN = 16
 
 
-username = "testuser"
-user_dir = os.path.join(os.path.split(__file__)[0], __USER_DIR, username)
-with users.create(username, "testpass", user_dir) as user:
-    with doclab.Environment(__SOURCE_DIR) as env:
-        env.update_file("text_file.txt", "Hello this is a file\n")
-        env.update_file("mathlib.py", python_library)
-        env.update_file("hello.py", python_program)
-        env.update_file("main.cpp", cpp_program)
+# username = "testuser"
+# user_dir = os.path.join(os.path.split(__file__)[0], __USER_DIR, username)
+# with users.create(username, "testpass", user_dir) as user:
+#     with doclab.Environment(__SOURCE_DIR) as env:
+#         env.update_file("text_file.txt", "Hello this is a file\n")
+#         env.update_file("mathlib.py", python_library)
+#         env.update_file("hello.py", python_program)
+#         env.update_file("main.cpp", cpp_program)
 
-        build, output = env.execute("test.exe", "main.cpp", [])
-        print(output.message)
-        build, output = env.execute("test.py", "hello.py", ["mathlib.py"])
-        print(output.message)
+#         build, output = env.execute("test.exe", "main.cpp", [])
+#         print(output.message)
+#         build, output = env.execute("test.py", "hello.py", ["mathlib.py"])
+#         print(output.message)
+
+with doclab.Environment(__SOURCE_DIR) as env:
+    env.update_file("text_file.txt", "Hello this is a file\n")
+    env.update_file("mathlib.py", python_library)
+    env.update_file("hello.py", python_program)
+    env.update_file("main.cpp", cpp_program)
+
+    build, output = env.execute("test.exe", "main.cpp", [])
+    print(output.message)
+    build, output = env.execute("test.py", "hello.py", ["mathlib.py"])
+    print(output.message)
 
 # usernames = ["abc123", "varuns1", "jnaki"]
 

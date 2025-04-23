@@ -1,6 +1,5 @@
 from itertools import islice
 import os
-
 import program
 
 
